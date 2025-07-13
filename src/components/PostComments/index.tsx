@@ -16,23 +16,34 @@ const Post = () => {
 
     return (
         <div>
-            <ul className={styles['post-comments']}>
-                {comments.map(({ comment, id }) => (
-                    <li className={styles['post-comment']} key={id}>
-                        <p className={styles['post-comment-content']}>
-                            {comment}
-                        </p>
-                    </li>
-                ))}
-            </ul>
-            <form onSubmit={handleAddComment} className={styles['post-comments-form']}>
-                <textarea value={tempComment} onChange={e => setTempComment(e.target.value)} required className={styles['post-comments-form-textarea']} />
-                <button type="submit" className={styles['post-comments-form-button']}>
-                    Comentar
-                </button>
-            </form>
-        </div>
-    );
+            <ul className={styles['post-comments']} data-testid="comments-list">
+            {comments.map(({ comment, id }) => (
+                <li className={styles['post-comment']} key={id} data-testid="comment-item">
+                    <p className={styles['post-comment-content']}>
+                        {comment}
+                    </p>
+                </li>
+            ))}
+        </ul>
+        <form onSubmit={handleAddComment} className={styles['post-comments-form']}>
+            <textarea
+                value={tempComment}
+                onChange={e => setTempComment(e.target.value)}
+                required
+                className={styles['post-comments-form-textarea']}
+                data-testid="comment-input"
+            />
+            <button
+                type="submit"
+                className={styles['post-comments-form-button']}
+                data-testid="submit-button"
+            >
+                Comentar
+            </button>
+        </form>
+    </div>
+);
+
 }
 
 export default Post;
